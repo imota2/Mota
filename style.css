@@ -1,0 +1,773 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:white;
+  color:black;
+  font-family:"Oswald", sans-serif;
+}
+
+/* FUNDO SIMPLES */
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(120deg, #fff 60%, #000 60%);
+  z-index:-2;
+}
+
+/* RUÍDO MANGÁ */
+.noise{
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(
+    45deg,
+    rgba(0,0,0,.03),
+    rgba(0,0,0,.03) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index:-1;
+}
+
+/* SOL */
+.sun{
+  position:fixed;
+
+  top:40px;
+  right:40px;
+
+  width:250px;
+
+  z-index:-1;
+
+  animation:floatSun 6s ease-in-out infinite;
+}
+
+.sun img{
+  width:100%;
+}
+
+@keyframes floatSun{
+  0%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+
+  50%{
+    transform:translateY(-10px) rotate(2deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(-2deg);
+  }
+}
+
+/* CENTRAL */
+.page{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CARD */
+.character-card{
+  background:white;
+  color:black;
+  padding:50px;
+  width:500px;
+  position:relative;
+  border:6px solid black;
+  transform:rotate(-2deg);
+  box-shadow:10px 10px 0 black;
+}
+
+/* TAG */
+.tag{
+  font-size:12px;
+  letter-spacing:3px;
+  margin-bottom:10px;
+}
+
+/* TÍTULO */
+h1{
+  font-family:"Black Ops One";
+  font-size:60px;
+  letter-spacing:4px;
+}
+
+/* LINHA */
+.line{
+  width:100%;
+  height:4px;
+  background:black;
+  margin:15px 0;
+}
+
+/* DESCRIÇÃO */
+.desc{
+  font-size:16px;
+  margin-bottom:20px;
+}
+
+/* STATS */
+.stats{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  font-weight:bold;
+}
+
+/* RELÓGIO */
+.clock{
+  margin-top:15px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* INFO */
+.info{
+  padding:80px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+/* BOX */
+.box{
+  border:4px solid black;
+  padding:20px;
+  background:white;
+  box-shadow:6px 6px 0 black;
+  transform:rotate(-1deg);
+  font-weight:bold;
+  transition:.3s;
+}
+
+.box:hover{
+  transform:rotate(0deg) scale(1.03);
+}
+
+.box h2{
+  font-size:14px;
+  letter-spacing:3px;
+  border-bottom:2px solid black;
+  padding-bottom:5px;
+  margin-bottom:10px;
+}
+
+/* RANK */
+.rank{
+  position:absolute;
+  top:15px;
+  right:20px;
+
+  font-size:14px;
+  font-weight:bold;
+  letter-spacing:2px;
+
+  padding:6px 10px;
+
+  border:2px solid black;
+  background:white;
+
+  box-shadow:4px 4px 0 black;
+
+  transform:rotate(-0.4deg); /* POSIÇÃO RANK */
+}  
+
+/* ORIGIN POINT */
+.origin{
+  position:relative;
+  overflow:hidden;
+  padding-top:40px;
+}
+
+/* topo estilo selo de sistema */
+.origin .section-header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+
+  padding:6px 10px;
+  background:black;
+  color:white;
+
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+
+/* cidade principal (destaque forte) */
+.origin-main{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-top:10px;
+}
+
+/* linha de mundo */
+.origin-sub{
+  font-size:11px;
+  opacity:.75;
+  margin-top:5px;
+  letter-spacing:1px;
+}
+
+/* coordenadas estilo sistema */
+.origin-coords{
+  margin-top:12px;
+
+  font-size:11px;
+  font-family:monospace;
+
+  border-top:1px solid black;
+  padding-top:8px;
+
+  letter-spacing:1px;
+}
+
+/* status tipo sistema ativo */
+.origin-status{
+  margin-top:15px;
+
+  display:inline-block;
+  padding:5px 10px;
+
+  font-size:10px;
+  font-weight:bold;
+
+  border:2px solid black;
+
+  transform:rotate(-1deg);
+}
+
+/* IDENTITY */
+.identity{
+  position:relative;
+  overflow:hidden;
+  padding-top:35px;
+}
+
+.identity .section-header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+
+  padding:6px 10px;
+  background:black;
+  color:white;
+
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+
+.identity .main-title{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-top:10px;
+}
+
+.identity .sub-text{
+  font-size:12px;
+  opacity:.7;
+  margin-top:8px;
+}
+
+.identity .tag-small{
+  margin-top:15px;
+  display:inline-block;
+
+  font-size:10px;
+  padding:4px 8px;
+
+  border:2px solid black;
+  transform:rotate(-2deg);
+}
+
+/* SOUL PARAMETERS */
+.soul{
+  position:relative;
+  padding-top:35px;
+}
+
+.soul .section-header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+
+  padding:6px 10px;
+  background:black;
+  color:white;
+
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:5px;
+
+  font-size:12px;
+  margin-top:10px;
+}
+
+.stats-grid div{
+  border:1px solid black;
+  padding:4px;
+  text-align:center;
+}
+
+.soul-level{
+  margin-top:15px;
+
+  display:inline-block;
+  padding:4px 8px;
+
+  font-size:10px;
+  font-weight:bold;
+
+  border:2px solid black;
+
+  transform:rotate(-2deg);
+}
+
+/* WEAPON OUTPUT */
+.weapon{
+  position:relative;
+  padding-top:35px;
+}
+
+.weapon .section-header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+
+  padding:6px 10px;
+  background:black;
+  color:white;
+
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+
+.weapon-desc{
+  font-size:13px;
+  margin-top:10px;
+  line-height:1.4;
+}
+
+.weapon-status{
+  margin-top:15px;
+
+  font-size:11px;
+  font-weight:bold;
+
+  display:inline-block;
+  padding:4px 8px;
+
+  border:2px solid black;
+  transform:rotate(-1deg);
+}
+
+/* PSYCHO SOUL */
+.psy-section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.psy-title{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:4px;
+
+  border:4px solid black;
+  display:inline-block;
+
+  padding:10px 20px;
+
+  box-shadow:6px 6px 0 black;
+
+  transform:rotate(-2deg);
+  background:white;
+
+  margin-bottom:40px;
+}
+
+.psy-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.psy h2{
+  font-size:14px;
+  letter-spacing:3px;
+  margin-bottom:10px;
+}
+
+.psy ul{
+  list-style:none;
+  margin-top:10px;
+}
+
+.psy li{
+  padding:5px 0;
+  border-bottom:1px solid black;
+  font-size:14px;
+}
+
+.psy-main{
+  font-size:18px;
+  font-weight:800;
+  margin-top:10px;
+}
+
+.psy-sub{
+  font-size:12px;
+  opacity:.7;
+  margin-top:5px;
+}
+
+.psy-text{
+  font-size:14px;
+  margin-top:10px;
+  line-height:1.4;
+  opacity:.85;
+}
+
+
+/* REGISTRO DE MISSÃO */
+
+.mission-section{
+  padding:80px;
+}
+
+.mission-title{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:4px;
+
+  border:4px solid black;
+  display:table;
+
+  padding:10px 20px;
+
+  box-shadow:6px 6px 0 black;
+
+  transform:rotate(-2deg);
+  background:white;
+
+  margin:0 auto 40px auto;
+}
+
+.mission-box{
+  max-width:900px;
+  margin:auto;
+
+  background:white;
+
+  border:4px solid black;
+
+  padding:30px;
+
+  box-shadow:8px 8px 0 black;
+
+  transform:rotate(-1deg);
+}
+
+.mission-header{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.mission-status{
+  display:inline-block;
+
+  border:2px solid black;
+
+  padding:6px 12px;
+
+  font-size:12px;
+
+  letter-spacing:2px;
+
+  margin-bottom:20px;
+}
+
+.mission-text{
+  margin-bottom:25px;
+  line-height:1.8;
+}
+
+.mission-objectives{
+  display:grid;
+  gap:10px;
+
+  margin-bottom:25px;
+}
+
+.mission-footer{
+  border-top:3px solid black;
+
+  padding-top:15px;
+
+  font-size:12px;
+
+  letter-spacing:2px;
+}
+
+/* RELATORIO DE PROGRESSO */
+
+.progress-section{
+  padding:80px 20px;
+}
+
+.progress-title{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:4px;
+
+  border:4px solid black;
+  display:table;
+
+  padding:10px 20px;
+
+  box-shadow:6px 6px 0 black;
+
+  transform:rotate(-2deg);
+  background:white;
+
+  margin:0 auto 40px auto;
+}
+
+/* .progress-box{
+  max-width:900px;
+  margin:auto;
+
+  background:white;
+
+  border:5px solid black;
+
+  padding:35px;
+
+  box-shadow:
+    10px 10px 0 black,
+    15px 15px 0 rgba(0,0,0,.15);
+
+  transform:rotate(-1.5deg);
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.progress-box::before{
+  content:"DWMA";
+  
+  position:absolute;
+
+  top:10px;
+  right:15px;
+
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:3px;
+
+  opacity:.15;
+} */
+
+.progress-box{
+  max-width:900px;
+  margin:auto;
+
+  background:white;
+
+  border:5px solid black;
+
+  padding:35px;
+
+  box-shadow:10px 10px 0 black;
+
+  transform:rotate(-1deg);
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.progress-box::before{
+  content:"ARQUIVO DWMA";
+
+  position:absolute;
+
+  top:12px;
+  right:15px;
+
+  font-size:12px;
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  opacity:.15;
+}
+
+.progress-alert{
+  display:inline-block;
+
+  margin-bottom:25px;
+
+  padding:8px 14px;
+
+  border:3px solid black;
+
+  background:white;
+
+  font-size:12px;
+  font-weight:bold;
+
+  letter-spacing:2px;
+
+  transform:rotate(-2deg);
+
+  box-shadow:4px 4px 0 black;
+}
+
+.skill{
+  margin-bottom:25px;
+}
+
+.skill-top{
+  display:flex;
+  justify-content:space-between;
+
+  font-size:13px;
+  font-weight:bold;
+
+  margin-bottom:6px;
+
+  letter-spacing:1px;
+}
+
+.skill-bar{
+  height:22px;
+
+  border:3px solid black;
+
+  background:
+  repeating-linear-gradient(
+    90deg,
+    white,
+    white 15px,
+    #ececec 15px,
+    #ececec 30px
+  );
+
+  overflow:hidden;
+
+  position:relative;
+}
+
+.skill-fill{
+  height:100%;
+
+  background:black;
+
+  position:relative;
+}
+
+.skill-fill::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+  repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,.25),
+    rgba(255,255,255,.25) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.progress-diagnosis{
+  margin-top:25px;
+
+  padding-top:15px;
+
+  border-top:3px solid black;
+
+  font-size:12px;
+
+  letter-spacing:1px;
+
+  line-height:1.7;
+}
+
+.html{
+  width:95%;
+}
+
+.css{
+  width:90%;
+}
+
+.js{
+  width:75%;
+}
+
+.python{
+  width:70%;
+}
+
+.flutter{
+  width:65%;
+}
+
+/* BOTÃO DE ACESSO AO PORTFÓLIO */
+.dwma-btn{
+  display:table;
+
+  margin:25px auto 0;
+
+  text-decoration:none;
+
+  color:black;
+
+  border:4px solid black;
+
+  padding:12px 20px;
+
+  background:white;
+
+  box-shadow:6px 6px 0 black;
+
+  font-weight:bold;
+
+  letter-spacing:1px;
+
+  transition:.3s;
+
+  transform:rotate(-1deg);
+}
+
+.dwma-btn:hover{
+  transform:
+  rotate(0deg)
+  translate(-3px,-3px);
+}

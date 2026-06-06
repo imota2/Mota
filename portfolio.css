@@ -1,0 +1,268 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Oswald",sans-serif;
+  background:white;
+  color:black;
+}
+
+/* FUNDO */
+
+.bg{
+  position:fixed;
+  inset:0;
+
+  background:
+  linear-gradient(120deg,#fff 60%,#000 60%);
+
+  z-index:-2;
+}
+
+.noise{
+  position:fixed;
+  inset:0;
+
+  background:
+  repeating-linear-gradient(
+    45deg,
+    rgba(0,0,0,.03),
+    rgba(0,0,0,.03) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  z-index:-1;
+}
+
+/* CABEÇALHO */
+
+.header{
+  text-align:center;
+
+  padding:80px 20px 40px;
+}
+
+.header h1{
+  font-family:"Black Ops One";
+
+  font-size:60px;
+
+  letter-spacing:4px;
+}
+
+.header p{
+  margin-top:10px;
+
+  font-size:14px;
+
+  letter-spacing:2px;
+}
+
+/* SEÇÕES */
+
+.section{
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:60px 20px;
+}
+
+.section-title{
+  display:table;
+
+  margin:0 auto 40px;
+
+  padding:10px 20px;
+
+  border:4px solid black;
+
+  background:white;
+
+  box-shadow:6px 6px 0 black;
+
+  transform:rotate(-2deg);
+
+  font-weight:900;
+
+  letter-spacing:3px;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+
+  gap:20px;
+}
+
+/* CARDS */
+
+.card{
+  background:white;
+
+  border:4px solid black;
+
+  padding:20px;
+
+  box-shadow:6px 6px 0 black;
+
+  transform:rotate(-1deg);
+
+  transition:.3s;
+}
+
+.card:hover{
+  transform:
+  rotate(0deg)
+  scale(1.02);
+}
+
+.card h3{
+  margin-bottom:10px;
+
+  font-size:22px;
+}
+
+.card p{
+  line-height:1.6;
+}
+
+/* STATUS */
+
+.status{
+  margin-top:15px;
+
+  display:inline-block;
+
+  border:2px solid black;
+
+  padding:5px 10px;
+
+  font-size:12px;
+
+  font-weight:bold;
+
+  letter-spacing:1px;
+}
+
+/* TECNOLOGIAS */
+
+.tech-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(150px,1fr));
+
+  gap:15px;
+}
+
+.tech{
+  border:3px solid black;
+
+  padding:15px;
+
+  text-align:center;
+
+  font-weight:bold;
+
+  background:white;
+
+  box-shadow:4px 4px 0 black;
+
+  transition:.3s;
+}
+
+.tech:hover{
+  transform:
+  translate(-2px,-2px);
+}
+
+/* CAPACIDADES */
+
+.ability-box{
+  border:4px solid black;
+
+  background:white;
+
+  padding:30px;
+
+  box-shadow:6px 6px 0 black;
+
+  line-height:2;
+}
+
+/* CERTIFICAÇÕES */
+
+.cert-list{
+  display:grid;
+
+  gap:15px;
+}
+
+.cert{
+  border:3px solid black;
+
+  padding:15px;
+
+  background:white;
+
+  box-shadow:4px 4px 0 black;
+
+  transition:.3s;
+}
+
+.cert:hover{
+  transform:
+  translate(-2px,-2px);
+}
+
+/* BOTÃO */
+
+.back-btn{
+  display:table;
+
+  margin:60px auto;
+
+  text-decoration:none;
+
+  color:black;
+
+  border:4px solid black;
+
+  padding:12px 20px;
+
+  background:white;
+
+  box-shadow:6px 6px 0 black;
+
+  font-weight:bold;
+
+  transition:.3s;
+}
+
+.back-btn:hover{
+  transform:
+  translate(-3px,-3px);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+  .header h1{
+    font-size:40px;
+  }
+
+  .section{
+    padding:40px 15px;
+  }
+
+}
