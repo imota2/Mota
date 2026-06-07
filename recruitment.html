@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recrutamento DWMA</title>
+
+<link rel="stylesheet" href="recruitment.css">
+<link rel="icon" href="img/logo.png" type="image/png">
+<script defer src="recruitment.js"></script>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<section class="recruitment">
+
+  <div class="title">
+    FORMULÁRIO DE RECRUTAMENTO DWMA
+  </div>
+
+  <form id="dwmaForm">
+
+    <div class="card">
+
+      <label>Nome Completo</label>
+      <input type="text" name="Nome" required>
+
+      <label>Codinome</label>
+      <input type="text" name="Codinome">
+
+      <label>Idade</label>
+      <input type="number" name="Idade" required>
+
+      <label>Cidade de Origem</label>
+      <input type="text" name="Cidade">
+
+      <label>Tipo de Alma</label>
+      <select name="Tipo de Alma">
+        <option>Humano</option>
+        <option>Meister</option>
+        <option>Arma Demoníaca</option>
+        <option>Desconhecido</option>
+      </select>
+
+      <label>Nível de Caos</label>
+      <input type="range" id="chaos" min="0" max="100" value="50">
+
+      <label>Habilidades</label>
+      <textarea name="Habilidades"></textarea>
+
+      <label>Objetivo Principal</label>
+      <textarea name="Objetivo"></textarea>
+
+      <button type="button" id="analisar">
+        INICIAR ANÁLISE
+      </button>
+
+    </div>
+
+  </form>
+
+  <div id="resultado" class="resultado hidden">
+
+    <h2>ANÁLISE CONCLUÍDA</h2>
+
+    <div id="compatibilidade"></div>
+    <div id="idUnidade"></div>
+    <div id="statusFinal"></div>
+
+    <button id="discordBtn">TRANSMITIR PARA DWMA</button>
+    <button id="whatsBtn">ENVIAR VIA WHATSAPP</button>
+
+  </div>
+
+</section>
+
+<!-- TELA SUCESSO -->
+<div id="dwmaSuccess" class="success-screen">
+  <div class="success-box">
+
+    <div class="success-title">SISTEMA DWMA</div>
+
+    <div class="success-status">TRANSMISSÃO CONCLUÍDA</div>
+
+    <div class="success-text">
+      A unidade foi registrada com sucesso no sistema DWMA.
+    </div>
+
+    <div class="success-id" id="successId">ID: ----</div>
+
+    <button id="closeSuccess">OK</button>
+
+  </div>
+</div>
+
+<a href="index.html" class="dwma-btn">
+  RETORNAR AO SISTEMA PRINCIPAL
+  <span>DWMA • HOME NODE</span>
+</a>
+
+<footer class="footer">
+  © 2026 DWMA - MOTA MEISTER MM-006
+</footer>
+
+</body>
+</html>

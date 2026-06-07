@@ -270,24 +270,20 @@ body{
 /* RODAPÉ */
 
 .footer{
-  text-align:center;
-  padding:20px;
-  font-size:12px;
-  letter-spacing:2px;
-  font-weight:bold;
-  
-  max-width:300px;
-  margin:auto;
+  width: fit-content;
 
-  background:white;
+  margin: 60px 20px 20px auto; /* joga pra direita */
 
-  border:3px solid black;
+  padding: 8px 12px;
 
-  padding:5px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: bold;
 
-  box-shadow:10px 10px 0 black;
+  background: white;
 
-  position:relative;
+  border: 3px solid black;
+  box-shadow: 6px 6px 0 black;
 
-  overflow:hidden;
+  text-align: right;
 }
