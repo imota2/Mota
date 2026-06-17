@@ -1,795 +1,1394 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+::-webkit-scrollbar {
+  width: 7px;
 }
 
-body{
-  background:white;
-  color:black;
-  font-family:"Oswald", sans-serif;
+::-webkit-scrollbar-track {
+  background: #000000; /* Fundo preto na faixa de scroll */
 }
 
-/* FUNDO SIMPLES */
-.bg{
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(120deg, #fff 60%, #000 60%);
-  z-index:-2;
+::-webkit-scrollbar-thumb {
+  background: #ffffff; /* O "pino" que desce é branco */
+  border: 3px solid #000000; /* Borda preta nele para criar um contraste bruto */
 }
 
-/* RUÍDO MANGÁ */
-.noise{
-  position:fixed;
-  inset:0;
-  background:repeating-linear-gradient(
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E RESET
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+  color: black;
+  font-family: "Oswald", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. ELEMENTOS DE AMBIENTAÇÃO DE FUNDO
+   ========================================================================== */
+
+/* Fundo Estilo Mangá */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(120deg, #fff 60%, #000 60%);
+  z-index: -3;
+}
+
+/* Textura de Ruído */
+.noise {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
     45deg,
-    rgba(0,0,0,.03),
-    rgba(0,0,0,.03) 2px,
+    rgba(0, 0, 0, .03),
+    rgba(0, 0, 0, .03) 2px,
     transparent 2px,
     transparent 4px
   );
-  z-index:-1;
+  z-index: -2;
 }
 
-/* SOL */
-.sun{
-  position:fixed;
-
-  top:40px;
-  right:40px;
-
-  width:250px;
-
-  z-index:-1;
-
-  animation:floatSun 6s ease-in-out infinite;
+/* Sol de Soul Eater */
+.sun {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  width: 250px;
+  z-index: -1;
+  animation: floatSun 6s ease-in-out infinite;
 }
 
-.sun img{
-  width:100%;
+.sun img {
+  width: 100%;
 }
 
-@keyframes floatSun{
-  0%{
-    transform:translateY(0px) rotate(-2deg);
+@keyframes floatSun {
+  0% {
+    transform: translateY(0px) rotate(-2deg);
   }
-
-  50%{
-    transform:translateY(-10px) rotate(2deg);
+  50% {
+    transform: translateY(-10px) rotate(2deg);
   }
-
-  100%{
-    transform:translateY(0px) rotate(-2deg);
+  100% {
+    transform: translateY(0px) rotate(-2deg);
   }
 }
 
-/* CENTRAL */
-.page{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+/* ==========================================================================
+   3. SEÇÃO PRINCIPAL (CARD DE IDENTIFICAÇÃO)
+   ========================================================================== */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
 }
 
-/* CARD */
-.character-card{
-  background:white;
-  color:black;
-  padding:50px;
-  width:500px;
-  position:relative;
-  border:6px solid black;
-  transform:rotate(-2deg);
-  box-shadow:10px 10px 0 black;
+.character-card {
+  background: white;
+  color: black;
+  padding: 50px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  border: 6px solid black;
+  transform: rotate(-2deg);
+  box-shadow: 10px 10px 0 black;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* TAG */
-.tag{
-  font-size:12px;
-  letter-spacing:3px;
-  margin-bottom:10px;
+.character-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 12px 12px 0 black;
 }
 
-/* TÍTULO */
-h1{
-  font-family:"Black Ops One";
-  font-size:60px;
-  letter-spacing:4px;
+.tag {
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
 }
 
-/* LINHA */
-.line{
-  width:100%;
-  height:4px;
-  background:black;
-  margin:15px 0;
+h1 {
+  font-family: "Black Ops One";
+  font-size: 60px;
+  letter-spacing: 4px;
+  line-height: 1.1;
 }
 
-/* DESCRIÇÃO */
-.desc{
-  font-size:16px;
-  margin-bottom:20px;
+.line {
+  width: 100%;
+  height: 4px;
+  background: black;
+  margin: 15px 0;
 }
 
-/* STATS */
-.stats{
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
-  font-weight:bold;
+.desc {
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
-/* RELÓGIO */
-.clock{
-  margin-top:15px;
-  font-size:18px;
-  font-weight:bold;
-}
-
-/* INFO */
-.info{
-  padding:80px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-/* BOX */
-.box{
-  border:4px solid black;
-  padding:20px;
-  background:white;
-  box-shadow:6px 6px 0 black;
-  transform:rotate(-1deg);
-  font-weight:bold;
-  transition:.3s;
-}
-
-.box:hover{
-  transform:rotate(0deg) scale(1.03);
-}
-
-.box h2{
-  font-size:14px;
-  letter-spacing:3px;
-  border-bottom:2px solid black;
-  padding-bottom:5px;
-  margin-bottom:10px;
-}
-
-/* RANK */
-.rank{
-  position:absolute;
-  top:15px;
-  right:20px;
-
-  font-size:14px;
-  font-weight:bold;
-  letter-spacing:2px;
-
-  padding:6px 10px;
-
-  border:2px solid black;
-  background:white;
-
-  box-shadow:4px 4px 0 black;
-
-  transform:rotate(-0.4deg); /* POSIÇÃO RANK */
-}  
-
-/* ORIGIN POINT */
-.origin{
-  position:relative;
-  overflow:hidden;
-  padding-top:40px;
-}
-
-/* topo estilo selo de sistema */
-.origin .section-header{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-
-  padding:6px 10px;
-  background:black;
-  color:white;
-
-  font-size:12px;
-  letter-spacing:3px;
-  font-weight:bold;
-}
-
-/* cidade principal (destaque forte) */
-.origin-main{
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:2px;
-  margin-top:10px;
-}
-
-/* linha de mundo */
-.origin-sub{
-  font-size:11px;
-  opacity:.75;
-  margin-top:5px;
-  letter-spacing:1px;
-}
-
-/* coordenadas estilo sistema */
-.origin-coords{
-  margin-top:12px;
-
-  font-size:11px;
-  font-family:monospace;
-
-  border-top:1px solid black;
-  padding-top:8px;
-
-  letter-spacing:1px;
-}
-
-/* status tipo sistema ativo */
-.origin-status{
-  margin-top:15px;
-
-  display:inline-block;
-  padding:5px 10px;
-
-  font-size:10px;
-  font-weight:bold;
-
-  border:2px solid black;
-
-  transform:rotate(-1deg);
-}
-
-/* IDENTITY */
-.identity{
-  position:relative;
-  overflow:hidden;
-  padding-top:35px;
-}
-
-.identity .section-header{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-
-  padding:6px 10px;
-  background:black;
-  color:white;
-
-  font-size:12px;
-  letter-spacing:3px;
-  font-weight:bold;
-}
-
-.identity .main-title{
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:2px;
-  margin-top:10px;
-}
-
-.identity .sub-text{
-  font-size:12px;
-  opacity:.7;
-  margin-top:8px;
-}
-
-.identity .tag-small{
-  margin-top:15px;
-  display:inline-block;
-
-  font-size:10px;
-  padding:4px 8px;
-
-  border:2px solid black;
-  transform:rotate(-2deg);
-}
-
-/* SOUL PARAMETERS */
-.soul{
-  position:relative;
-  padding-top:35px;
-}
-
-.soul .section-header{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-
-  padding:6px 10px;
-  background:black;
-  color:white;
-
-  font-size:12px;
-  letter-spacing:3px;
-  font-weight:bold;
-}
-
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:5px;
-
-  font-size:12px;
-  margin-top:10px;
-}
-
-.stats-grid div{
-  border:1px solid black;
-  padding:4px;
-  text-align:center;
-}
-
-.soul-level{
-  margin-top:15px;
-
-  display:inline-block;
-  padding:4px 8px;
-
-  font-size:10px;
-  font-weight:bold;
-
-  border:2px solid black;
-
-  transform:rotate(-2deg);
-}
-
-/* WEAPON OUTPUT */
-.weapon{
-  position:relative;
-  padding-top:35px;
-}
-
-.weapon .section-header{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-
-  padding:6px 10px;
-  background:black;
-  color:white;
-
-  font-size:12px;
-  letter-spacing:3px;
-  font-weight:bold;
-}
-
-.weapon-desc{
-  font-size:13px;
-  margin-top:10px;
-  line-height:1.4;
-}
-
-.weapon-status{
-  margin-top:15px;
-
-  font-size:11px;
-  font-weight:bold;
-
-  display:inline-block;
-  padding:4px 8px;
-
-  border:2px solid black;
-  transform:rotate(-1deg);
-}
-
-/* PSYCHO SOUL */
-.psy-section{
-  padding:80px 20px;
-  text-align:center;
-}
-
-.psy-title{
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:4px;
-
-  border:4px solid black;
-  display:inline-block;
-
-  padding:10px 20px;
-
-  box-shadow:6px 6px 0 black;
-
-  transform:rotate(-2deg);
-  background:white;
-
-  margin-bottom:40px;
-}
-
-.psy-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.psy h2{
-  font-size:14px;
-  letter-spacing:3px;
-  margin-bottom:10px;
-}
-
-.psy ul{
-  list-style:none;
-  margin-top:10px;
-}
-
-.psy li{
-  padding:5px 0;
-  border-bottom:1px solid black;
-  font-size:14px;
-}
-
-.psy-main{
-  font-size:18px;
-  font-weight:800;
-  margin-top:10px;
-}
-
-.psy-sub{
-  font-size:12px;
-  opacity:.7;
-  margin-top:5px;
-}
-
-.psy-text{
-  font-size:14px;
-  margin-top:10px;
-  line-height:1.4;
-  opacity:.85;
-}
-
-
-/* REGISTRO DE MISSÃO */
-
-.mission-section{
-  padding:80px;
-}
-
-.mission-title{
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:4px;
-
-  border:4px solid black;
-  display:table;
-
-  padding:10px 20px;
-
-  box-shadow:6px 6px 0 black;
-
-  transform:rotate(-2deg);
-  background:white;
-
-  margin:0 auto 40px auto;
-}
-
-.mission-box{
-  max-width:900px;
-  margin:auto;
-
-  background:white;
-
-  border:4px solid black;
-
-  padding:30px;
-
-  box-shadow:8px 8px 0 black;
-
-  transform:rotate(-1deg);
-}
-
-.mission-header{
-  font-size:22px;
-  font-weight:bold;
-  margin-bottom:10px;
-}
-
-.mission-status{
-  display:inline-block;
-
-  border:2px solid black;
-
-  padding:6px 12px;
-
-  font-size:12px;
-
-  letter-spacing:2px;
-
-  margin-bottom:20px;
-}
-
-.mission-text{
-  margin-bottom:25px;
-  line-height:1.8;
-}
-
-.mission-objectives{
-  display:grid;
-  gap:10px;
-
-  margin-bottom:25px;
-}
-
-.mission-footer{
-  border-top:3px solid black;
-
-  padding-top:15px;
-
-  font-size:12px;
-
-  letter-spacing:2px;
-}
-
-/* RELATORIO DE PROGRESSO */
-
-.progress-section{
-  padding:80px 20px;
-}
-
-.progress-title{
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:4px;
-
-  border:4px solid black;
-  display:table;
-
-  padding:10px 20px;
-
-  box-shadow:6px 6px 0 black;
-
-  transform:rotate(-2deg);
-  background:white;
-
-  margin:0 auto 40px auto;
-}
-
-/* .progress-box{
-  max-width:900px;
-  margin:auto;
-
-  background:white;
-
-  border:5px solid black;
-
-  padding:35px;
-
-  box-shadow:
-    10px 10px 0 black,
-    15px 15px 0 rgba(0,0,0,.15);
-
-  transform:rotate(-1.5deg);
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.progress-box::before{
-  content:"DWMA";
+/* ==========================================================================
+   STATUS MINIMALISTAS E ELEGANTES
+   ========================================================================== */
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
   
-  position:absolute;
-
-  top:10px;
-  right:15px;
-
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:3px;
-
-  opacity:.15;
-} */
-
-.progress-box{
-  max-width:900px;
-  margin:auto;
-
-  background:white;
-
-  border:5px solid black;
-
-  padding:35px;
-
-  box-shadow:10px 10px 0 black;
-
-  transform:rotate(-1deg);
-
-  position:relative;
-
-  overflow:hidden;
+  /* Linha divisória fina e elegante no topo */
+  border-top: 1px solid rgba(0, 0, 0, 0.15); 
+  padding-top: 22px;
+  margin-top: 25px;
 }
 
-.progress-box::before{
-  content:"ARQUIVO DWMA";
-
-  position:absolute;
-
-  top:12px;
-  right:15px;
-
-  font-size:12px;
-  font-weight:900;
-
-  letter-spacing:3px;
-
-  opacity:.15;
+.stat-item {
+  display: flex;
+  flex-direction: column; /* Coloca o valor abaixo do título para visual de painel */
+  align-items: flex-start;
+  gap: 4px;
 }
 
-.progress-alert{
-  display:inline-block;
-
-  margin-bottom:25px;
-
-  padding:8px 14px;
-
-  border:3px solid black;
-
-  background:white;
-
-  font-size:12px;
-  font-weight:bold;
-
-  letter-spacing:2px;
-
-  transform:rotate(-2deg);
-
-  box-shadow:4px 4px 0 black;
+/* O título do status (Pequeno, discreto e espaçado) */
+.stat-item .label {
+  font-family: monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #777777; /* Tom cinza elegante */
 }
 
-.skill{
-  margin-bottom:25px;
+/* O valor do status (Forte, nítido e elegante) */
+.stat-item .value {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #000000;
+  position: relative;
 }
 
-.skill-top{
-  display:flex;
-  justify-content:space-between;
-
-  font-size:13px;
-  font-weight:bold;
-
-  margin-bottom:6px;
-
-  letter-spacing:1px;
+/* Destaque sutil para o último item (Insanidade) */
+.stat-item:last-child .value {
+  color: #000000; /* Vermelho alerta fino */
 }
 
-.skill-bar{
-  height:22px;
-
-  border:3px solid black;
-
-  background:
-  repeating-linear-gradient(
-    90deg,
-    white,
-    white 15px,
-    #ececec 15px,
-    #ececec 30px
-  );
-
-  overflow:hidden;
-
-  position:relative;
+/* Pequeno ponto estético abaixo de cada valor para simular interface */
+.stat-item .value::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 2px;
+  background: currentColor;
+  margin-top: 3px;
 }
 
-.skill-fill{
-  height:100%;
-
-  background:black;
-
-  position:relative;
+.clock {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.skill-fill::after{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-  repeating-linear-gradient(
-    -45deg,
-    rgba(255,255,255,.25),
-    rgba(255,255,255,.25) 8px,
-    transparent 8px,
-    transparent 16px
-  );
+.rank {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 6px 10px;
+  border: 2px solid black;
+  background: white;
+  box-shadow: 4px 4px 0 black;
+  transform: rotate(-0.4deg);
 }
 
-.progress-diagnosis{
-  margin-top:25px;
+/* ==========================================================================
+   4. SEÇÃO INFO (FICHA DA DWMA)
+   ========================================================================== */
 
-  padding-top:15px;
-
-  border-top:3px solid black;
-
-  font-size:12px;
-
-  letter-spacing:1px;
-
-  line-height:1.7;
+.info {
+  padding: 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.html{
-  width:95%;
+.box {
+  border: 4px solid black;
+  padding: 20px;
+  background: white;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-1deg);
+  font-weight: bold;
+  transition: .3s;
 }
 
-.css{
-  width:90%;
+.box:hover {
+  transform: rotate(0deg) scale(1.03);
 }
 
-.js{
-  width:75%;
+.box h2 {
+  font-size: 14px;
+  letter-spacing: 3px;
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.python{
-  width:70%;
+/* Bloco: Ponto de Origem */
+.origin {
+  position: relative;
+  overflow: hidden;
+  padding-top: 40px;
 }
 
-.flutter{
-  width:65%;
+.origin .section-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px 10px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
 }
 
-/* BOTÃO DE ACESSO AO PORTFÓLIO */
-.dwma-btn{
-  display:table;
-
-  margin:25px auto 0;
-
-  text-decoration:none;
-
-  color:black;
-
-  border:4px solid black;
-
-  padding:12px 20px;
-
-  background:white;
-
-  box-shadow:6px 6px 0 black;
-
-  font-weight:bold;
-
-  letter-spacing:1px;
-
-  transition:.3s;
-
-  transform:rotate(-1deg);
+.origin-main {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-top: 10px;
 }
 
-.dwma-btn:hover{
-  transform:
-  rotate(0deg)
-  translate(-3px,-3px);
+.origin-sub {
+  font-size: 11px;
+  opacity: .75;
+  margin-top: 5px;
+  letter-spacing: 1px;
 }
 
+.origin-coords {
+  margin-top: 12px;
+  font-size: 11px;
+  font-family: monospace;
+  border-top: 1px solid black;
+  padding-top: 8px;
+  letter-spacing: 1px;
+}
 
-/* RODAPÉ */
+.origin-status {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 2px solid black;
+  transform: rotate(-1deg);
+}
 
-.footer{
+/* Bloco: Ficha de Identidade */
+.identity {
+  position: relative;
+  overflow: hidden;
+  padding-top: 35px;
+}
+
+.identity .section-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px 10px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.identity .main-title {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.identity .sub-text {
+  font-size: 12px;
+  opacity: .7;
+  margin-top: 8px;
+}
+
+.identity .tag-small {
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 10px;
+  padding: 4px 8px;
+  border: 2px solid black;
+  transform: rotate(-2deg);
+}
+
+/* Bloco: Parâmetros da Alma */
+.soul {
+  position: relative;
+  padding-top: 35px;
+}
+
+.soul .section-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px 10px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.stats-grid div {
+  border: 1px solid black;
+  padding: 4px;
+  text-align: center;
+}
+
+.soul-level {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 2px solid black;
+  transform: rotate(-2deg);
+}
+
+/* Bloco: Saída de Arma */
+.weapon {
+  position: relative;
+  padding-top: 35px;
+}
+
+.weapon .section-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px 10px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.weapon-desc {
+  font-size: 13px;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.weapon-status {
+  margin-top: 15px;
+  font-size: 11px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 4px 8px;
+  border: 2px solid black;
+  transform: rotate(-1deg);
+}
+
+/* ==========================================================================
+   5. SEÇÃO: ANÁLISE PSÍQUICA DA ALMA
+   ========================================================================== */
+
+.psy-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.psy-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  border: 4px solid black;
+  display: inline-block;
+  padding: 10px 20px;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-2deg);
+  background: white;
+  margin-bottom: 40px;
+}
+
+.psy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.psy h2 {
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.psy ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.psy li {
+  padding: 5px 0;
+  border-bottom: 1px solid black;
+  font-size: 14px;
+}
+
+.psy-main {
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.psy-sub {
+  font-size: 12px;
+  opacity: .7;
+  margin-top: 5px;
+}
+
+.psy-text {
+  font-size: 14px;
+  margin-top: 10px;
+  line-height: 1.4;
+  opacity: .85;
+}
+
+/* ==========================================================================
+   6. SEÇÃO: REGISTRO DE MISSÃO
+   ========================================================================== */
+
+.mission-section {
+  padding: 80px 20px;
+}
+
+.mission-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  border: 4px solid black;
+  display: table;
+  padding: 10px 20px;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-2deg);
+  background: white;
+  margin: 0 auto 40px auto;
+}
+
+.mission-box {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border: 4px solid black;
+  padding: 30px;
+  box-shadow: 8px 8px 0 black;
+  transform: rotate(-1deg);
+}
+
+.mission-header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.mission-status {
+  display: inline-block;
+  border: 2px solid black;
+  padding: 6px 12px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.mission-text {
+  margin-bottom: 25px;
+  line-height: 1.8;
+}
+
+.mission-objectives {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.mission-footer {
+  border-top: 3px solid black;
+  padding-top: 15px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   7. SEÇÃO: COMPRIMENTO DE ONDA DA ALMA (OSCILOSCÓPIO)
+   ========================================================================== */
+
+.wavelength-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.wavelength-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  border: 4px solid black;
+  display: inline-block;
+  padding: 10px 20px;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-2deg);
+  background: white;
+  margin-bottom: 40px;
+}
+
+.wavelength-box {
+  max-width: 800px;
+  margin: auto;
+  background: black;
+  border: 5px solid black;
+  padding: 35px;
+  box-shadow: 10px 0px 0 black;
+  position: relative;
+}
+
+.wave-container {
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border: 2px solid #222;
+}
+
+.wave-line {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q25,0 50,50 T100,50' fill='none' stroke='%23ffffff' stroke-width='4'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 100px 100%;
+  animation: moveWave 2.5s linear infinite;
+}
+
+.wave-line.fast {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q25,100 50,50 T100,50' fill='none' stroke='%23666666' stroke-width='2'/%3E%3C/svg%3E");
+  animation: moveWave 1.2s linear infinite reverse;
+  opacity: 0.5;
+}
+
+@keyframes moveWave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100px);
+  }
+}
+
+.wave-status {
+  color: white;
+  font-family: monospace;
+  margin-top: 15px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   8. SEÇÃO: MURAL DE CAÇA (PROJETOS)
+   ========================================================================== */
+
+.hunting-section {
+  padding: 80px 20px;
+}
+
+.hunting-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  border: 4px solid black;
+  display: table;
+  padding: 10px 20px;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-2deg);
+  background: white;
+  margin: 0 auto 40px auto;
+}
+
+.hunting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.hunter-card {
+  text-align: left;
+  transform: rotate(-1deg);
+}
+
+.soul-tag {
+  font-size: 11px;
+  background: black;
+  color: white;
+  display: inline-block;
+  padding: 4px 10px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hunter-card h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 5px 0 10px 0;
+}
+
+.weapon-used {
+  margin-top: 20px;
+  font-size: 12px;
+  border-top: 2px dashed black;
+  padding-top: 10px;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.hunting-counter {
+  display: table;
+  margin: 40px auto 0 auto;
+  padding: 5px 24px;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  background: white;
+  color: black;
+  border: 4px solid black;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-1deg);
+}
+
+/* ==========================================================================
+   9. SEÇÃO: DIÁRIO DE CAMPO (TEXTO CENSURADO)
+   ========================================================================== */
+
+.diary-section {
+  padding: 80px 20px;
+}
+
+.diary-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  border: 4px solid black;
+  display: table;
+  padding: 10px 20px;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-2deg);
+  background: white;
+  margin: 0 auto 40px auto;
+}
+
+.diary-box {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border: 4px solid black;
+  padding: 35px;
+  box-shadow: 8px 8px 0 black;
+  transform: rotate(-1deg);
+  display: grid;
+  gap: 30px;
+}
+
+.diary-log {
+  border-left: 4px solid black;
+  padding-left: 20px;
+  position: relative;
+}
+
+.log-date {
+  font-family: monospace;
+  font-weight: bold;
+  color: black;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 8px;
+  opacity: 0.6;
+}
+
+.censor {
+  background: black;
+  color: black;
+  transition: background 0.2s, color 0.2s;
+  padding: 0 3px;
+  font-family: monospace;
+  cursor: help;
+}
+
+.censor:hover {
+  background: #eeeeee;
+  color: black;
+}
+
+/* ==========================================================================
+   10. SEÇÃO: TERMINAL E CONEXÃO DWMA
+   ========================================================================== */
+
+.terminal-section {
+  padding: 80px 20px;
+}
+
+.terminal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.radio-box,
+.dwma-terminal-box {
+  transform: rotate(-1deg);
+}
+
+.radio-controls,
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.input-container input {
+  border: 3px solid black;
+  padding: 10px;
+  font-family: monospace;
+  width: 100%;
+  font-weight: bold;
+  outline: none;
+}
+
+.radio-btn,
+.input-container button {
+  background: white;
+  border: 3px solid black;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 black;
+  font-family: "Oswald";
+  transition: 0.1s;
+}
+
+.radio-btn:active,
+.input-container button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 black;
+}
+
+.radio-status,
+.terminal-response {
+  font-family: monospace;
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   11. SEÇÃO: RELATÓRIO DE PROGRESSO (SKILLS)
+   ========================================================================== */
+
+.progress-section {
+  padding: 80px 20px;
+}
+
+.progress-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  border: 4px solid black;
+  display: table;
+  padding: 10px 20px;
+  box-shadow: 6px 6px 0 black;
+  transform: rotate(-2deg);
+  background: white;
+  margin: 0 auto 40px auto;
+}
+
+.progress-box {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border: 5px solid black;
+  padding: 35px;
+  box-shadow: 10px 10px 0 black;
+  transform: rotate(-1deg);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-box::before {
+  content: "ARQUIVO DWMA";
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  opacity: .15;
+}
+
+.progress-alert {
+  display: inline-block;
+  margin-bottom: 25px;
+  padding: 8px 14px;
+  border: 3px solid black;
+  background: white;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transform: rotate(-2deg);
+  box-shadow: 4px 4px 0 black;
+}
+
+.skill {
+  margin-bottom: 25px;
+}
+
+.skill-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.skill-bar {
+  height: 22px;
+  border: 3px solid black;
+  background: repeating-linear-gradient(90deg, white, white 15px, #ececec 15px, #ececec 30px);
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-fill {
+  height: 100%;
+  background: black;
+  position: relative;
+  width: 0%;
+  transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
+}
+
+.skill-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, .25), rgba(255, 255, 255, .25) 8px, transparent 8px, transparent 16px);
+}
+
+.progress-diagnosis {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 3px solid black;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1.7;
+}
+
+.html, .css, .js, .python, .flutter {
+  width: 0%;
+}
+
+/* ==========================================================================
+   12. BOTÕES DE LINKS EXTERNOS E RODAPÉ
+   ========================================================================== */
+
+.dwma-btn {
+  display: table;
+  margin: 25px auto 0;
+  text-decoration: none;
+  color: black;
+  border: 4px solid black;
+  padding: 12px 20px;
+  background: white;
+  box-shadow: 6px 6px 0 black;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: .3s;
+  transform: rotate(-1deg);
+  max-width: 100%;
+  text-align: center;
+}
+
+.dwma-btn:hover {
+  transform: rotate(0deg) translate(-3px, -3px);
+}
+
+.footer {
   width: fit-content;
-
-  margin: 60px 20px 20px auto; /* joga pra direita */
-
+  margin: 60px 20px 20px auto;
   padding: 8px 12px;
-
   font-size: 11px;
   letter-spacing: 2px;
   font-weight: bold;
-
   background: white;
-
   border: 3px solid black;
   box-shadow: 6px 6px 0 black;
-
   text-align: right;
+}
+
+/* ==========================================================================
+   13. MEDIA QUERIES (RESPONSIVIDADE MOBILE COMPLETA)
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .character-card {
+    padding: 65px 20px 25px 20px;
+    border-width: 5px;
+    margin: 0 auto;
+    width: 92%;
+  }
+
+  .sun {
+    width: 120px;
+    top: 15px;
+    right: 15px;
+    opacity: 0.8;
+  }
+
+  .rank {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 10px;
+    padding: 4px 8px;
+    box-shadow: 3px 3px 0 black;
+    transform: rotate(-0.4deg);
+  }
+
+  .tag {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  h1 {
+    font-size: 34px;
+    letter-spacing: 2px;
+    margin-top: 5px;
+  }
+
+  .info,
+  .mission-section,
+  .progress-section,
+  .psy-section,
+  .wavelength-section,
+  .hunting-section,
+  .diary-section,
+  .terminal-section {
+    padding: 50px 15px;
+  }
+
+  .mission-box,
+  .progress-box,
+  .wavelength-box,
+  .diary-box {
+    width: 95%;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .dwma-btn {
+    width: 90%;
+    font-size: 13px;
+    padding: 14px 15px;
+    margin-top: 15px;
+  }
+
+  .hunter-card {
+    transform: rotate(0deg) !important;
+    margin-bottom: 15px;
+  }
+
+  .terminal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajustes Mobile do Contrato da DWMA */
+  .contract-box {
+    padding: 30px 15px;
+    margin: 0 10px;
+    width: 95%;
+  }
+
+  .contract-stamp {
+    position: relative;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    margin-bottom: 20px;
+  }
+
+  .contract-title {
+    font-size: 17px;
+  }
+
+  .contract-text {
+    font-size: 13px;
+  }
+
+  .clause {
+    font-size: 12px;
+  }
+
+  .contract-signature {
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 40px;
+  }
+
+  .sig-line {
+    max-width: 200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   14. MENU LATERAL RETRÁTIL (ESTILO HAMBÚRGUER BRUTALISTA)
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Botão fixo na tela para abrir o menu */
+.menu-trigger-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 99;
+  background: white;
+  color: black;
+  border: 4px solid black;
+  padding: 10px 18px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 black;
+  transform: rotate(-1.5deg);
+  transition: 0.2s ease;
+}
+
+.menu-trigger-btn:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 7px 7px 0 black;
+}
+
+/* O painel do menu que desliza */
+/* Atualize seu .side-menu no CSS */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  border-right: 6px solid black;
+  z-index: 100;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 1px 0 0 rgba(0, 0, 0, 0.05);
+  
+  /* ADICIONE ISSO PARA O SCROLL NO MOBILE */
+  overflow-y: auto; 
+}
+
+/* Garante que o container dos links tenha espaço para rolar */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 50px; /* Evita que o último item encoste na borda */
+}
+
+/* Classe que o JavaScript vai injetar para abrir o menu */
+.side-menu.open {
+  transform: translateX(0);
+}
+
+/* Botão de fechar dentro do menu */
+.menu-close-btn {
+  background: black;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  align-self: flex-start;
+  transform: rotate(1deg);
+  transition: 0.2s;
+}
+
+.menu-close-btn:hover {
+  background: #222;
+  transform: scale(1.05);
+}
+
+/* Container dos links */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Links estilizados */
+.menu-item {
+  display: block;
+  background: white;
+  color: black;
+  border: 3px solid black;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 5px 5px 0 black;
+  transition: all 0.2s ease;
+  transform: rotate(-1deg);
+}
+
+.menu-item:hover {
+  transform: rotate(1deg) translate(-3px, -3px);
+  box-shadow: 8px 8px 0 black;
+  background: #f4f4f4;
+}
+
+/* ==========================================================================
+   15. CONTRATO DE RESPONSABILIDADE DWMA (PADRÃO DESKTOP)
+   ========================================================================== */
+
+.contract-box {
+  background: white;
+  border: 5px solid black;
+  padding: 40px 30px;
+  position: relative;
+  box-shadow: 8px 8px 0 black;
+  transform: rotate(-2deg);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contract-stamp {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 2px dashed black;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transform: rotate(-7deg);
+  background: #fff;
+}
+
+.contract-title {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid black;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.contract-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+.contract-clauses {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 35px;
+  padding-left: 10px;
+  border-left: 4px solid black;
+}
+
+.clause {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.contract-signature {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.sig-line {
+  flex: 1;
+  text-align: center;
+  border-top: 2px solid black;
+  padding-top: 8px;
+  position: relative;
+}
+
+.sig-title {
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Estilo para simular a assinatura à mão */
+.signature-handwritten {
+  font-family: 'Oswald', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20px;
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  letter-spacing: 1px;
+  color: #111;
+  white-space: nowrap;
+}
+
+/* Carimbo da DWMA */
+.signature-seal {
+  font-family: 'Black Ops One', sans-serif;
+  font-size: 14px;
+  color: black;
+  border: 3px solid black;
+  padding: 2px 10px;
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  background: white;
+  letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   FORMULÁRIO EDITORIAL - ELEGÂNCIA BRUTALISTA
+   ========================================================================== */
+
+.kishin-collector {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 40px;
+  background: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 15px 15px 0px #000000;
+  transform: rotate(-1deg); /* Inclinação sutil e sofisticada */
+}
+
+.collector-title {
+  font-family: 'Black Ops One', sans-serif;
+  font-size: 20px;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+}
+
+/* Linha divisória ultra fina abaixo do título */
+.collector-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #000000;
+  margin: 15px auto 0;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+/* Campos de entrada: minimalistas e limpos */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid #000000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  background: transparent;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Efeito de foco elegante: a linha preta engorda suavemente */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom-width: 3px;
+}
+
+/* Botão: mantém a estética do seu .clock, mas com mais respiro */
+.collector-form button.clock {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 16px;
+  letter-spacing: 5px;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.collector-form button.clock:hover {
+  box-shadow: -5px 5px 0px #000000;
 }

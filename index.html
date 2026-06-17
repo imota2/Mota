@@ -1,336 +1,313 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Perfil DWMA</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Black+Ops+One&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="icon" href="img/logo.png" type="image/png">
-
-<script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DWMA // Registro de Unidade MM-006</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Black+Ops+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/logo.png" type="image/png">
+  <script defer src="script.js"></script>
 </head>
-
 <body>
+  
+  <!-- MENU DE NAVEGAÇÃO -->
+  <button id="menu-toggle" class="menu-trigger-btn" aria-label="Abrir Menu">MENU</button>
 
-<!-- FUNDO -->
-<div class="bg"></div>
-<div class="noise"></div>
-<div class="sun">
-  <img src="img/sun-soul2.png" alt="Soul Sun">
-</div>
-
-<!-- 🎴 CARD PRINCIPAL -->
-<section class="page">
-
-  <div class="character-card">
-
-    <div class="rank">MEISTER UNIT MM-006</div>
-
-    <div class="tag">ANOMALIA DETECTADA</div>
-
-    <h1>MIGUEL MOTA</h1>
-
-    <div class="line"></div>
-
-    <p class="desc">
-      Estudante de campo da DWMA em estado de desenvolvimento progressivo.  
-      Padrões cognitivos oscilando entre lógica e instabilidade criativa.
-    </p>
-
-    <div class="stats">
-      <div>ALMA: ALTA</div>
-      <div>CONTROLE: MÉDIO</div>
-      <div>CAOS: ALTO</div>
+  <nav id="side-menu" class="side-menu" aria-hidden="true">
+    <button id="menu-close" class="menu-close-btn">&times; CLOSE</button>
+    <div class="menu-links">
+      <a href="#card-principal" class="menu-item">DADOS DO MEISTER</a>
+      <a href="portfolio.html" class="menu-item">PROJETOS FORJADOS</a>
+      <a href="#analise-psiquica" class="menu-item">ESTADO DA ALMA</a>
+      <a href="#mural-caca" class="menu-item">OVOS DE KISHIN</a>
+      <a href="#diario-campo" class="menu-item">DIÁRIO DE BORDO</a>
+      <a href="#radio-terminal" class="menu-item">TRANSMISSÃO</a>
+      <a href="#progresso-skills" class="menu-item">NÍVEL DE SINCRONIA</a>
+      <a href="#dwma-contract" class="menu-item">PACTO DE ALMA</a>
     </div>
+  </nav>
 
-    <div class="clock" id="clock">00:00:00</div>
-
+  <!-- ELEMENTOS DE AMBIENTAÇÃO -->
+  <div class="bg"></div>
+  <div class="noise"></div>
+  <div class="sun">
+    <img src="img/sun-soul2.png" alt="Soul Sun - Sol de Soul Eater">
   </div>
 
-</section>
+  <!-- SISTEMA DE ÁUDIO OPERACIONAL -->
+  <audio id="my-audio-1" src="aviso de atenção.mp3"></audio>
+  <audio id="my-audio-2" src="comando central.mp3"></audio>
+  <audio id="my-audio-3" src="log de campo.mp3"></audio>
 
-<a href="portfolio.html" class="dwma-btn">
-  ACESSAR ARQUIVO DE DESENVOLVIMENTO
-</a>
-
-<a href="recruitment.html" class="dwma-btn">
-  ACESSAR CENTRO DE RECRUTAMENTO
-</a>
-
-
-<!-- 🧠 SISTEMA DE INFORMAÇÕES -->
-
-<section class="info">
-
-  <div class="box identity">
-
-    <div class="section-header">FICHA DE IDENTIDADE</div>
-
-    <div class="main-title">MIGUEL MOTA</div>
-
-    <div class="sub-text">
-      Unidade humana registrada sob o sistema de monitoramento da DWMA.  
-      Classificação oficial: unidade criativa de alta adaptabilidade.
-Capacidade elevada de aprendizado e resolução de problemas.
-Monitoramento contínuo recomendado.
-    </div>
-
-    <div class="tag-small">
-      UNIDADE MEISTER ATIVA — ID DO ARQUIVO: MM-006 // REGISTRADO DWMA
-    </div>
-
-  </div>
-
-  <div class="box soul">
-
-    <div class="section-header">PARÂMETROS DA ALMA</div>
-
-    <div class="stats-grid">
-      <div>HTML</div>
-      <div>CSS</div>
-      <div>JS</div>
-      <div>PYTHON</div>
-      <div>FLUTTER</div>
-      <div>ANDROID</div>
-    </div>
-
-    <div class="soul-level">
-      ESTABILIDADE DA ALMA: FLUTUAÇÃO ALTA DETECTADA
-    </div>
-
-  </div>
-
-  <div class="box weapon">
-
-    <div class="section-header">SAÍDA DE ARMA</div>
-
-    <p class="weapon-desc">
-      Desenvolvimento contínuo de sistemas mobile, interfaces experimentais e projetos pessoais focados em usabilidade, lógica e execução criativa sob pressão.
-    </p>
-
-    <div class="weapon-status">
-      STATUS: EVOLUÇÃO CONSTANTE
-    </div>
-
-  </div>
-
-  <div class="box origin">
-
-    <div class="section-header">PONTO DE ORIGEM</div>
-
-    <div class="origin-main">
-      PRAIA GRANDE - SP
-    </div>
-
-    <div class="origin-sub">
-      BRASIL • AMÉRICA DO SUL • TERRA
-    </div>
-
-    <div class="origin-coords">
-      LAT: -24.014  LONG: -46.469
-    </div>
-
-    <div class="origin-status">
-      LOCALIZAÇÃO CONFIRMADA • ZONA RESIDENCIAL DETECTADA
-    </div>
-
-  </div>
-
-</section>
-
-<!-- 🧠 ANÁLISE PSÍQUICA DA ALMA -->
-
-<section class="psy-section">
-
-  <div class="psy-title">
-    ANÁLISE PSÍQUICA DA ALMA
-  </div>
-
-  <div class="psy-grid">
-
-    <div class="box psy">
-
-      <h2>TIPO DE ALMA</h2>
-
-      <p class="psy-main">HUMANO / UNIDADE MEISTER DWMA</p>
-
-      <p class="psy-sub">
-        Assinatura de alma instável, porém altamente adaptativa.  
-        Forte produção criativa sob estímulos emocionais.
-      </p>
-
-    </div>
-
-    <div class="box psy">
-
-      <h2>INTERESSES</h2>
-
-      <ul>
-        <li>Desenvolvimento de Sistemas e Apps</li>
-        <li>Jogos</li>
-        <li>Experimentação de UI/UX</li>
-        <li>Aprendizado de Novas Tecnologias</li>
-      </ul>
-
-    </div>
-
-    <div class="box psy">
-
-      <h2>PERSONALIDADE</h2>
-
-      <p class="psy-text">
-        Observador, introspectivo e altamente imaginativo.  
-        Tende a analisar o ambiente antes de agir.  
-        Constrói modelos mentais complexos antes de executar ações no mundo real.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- REGISTRO MISSÃO -->
-
- <section class="mission-section">
-
-  <div class="mission-title">
-    REGISTRO DE MISSÃO
-  </div>
-
-  <div class="mission-box">
-
-<div class="mission-header">
-  MISSÃO ATUAL // MM-006
-</div>
-
-<div class="mission-status">
-  STATUS: EM ANDAMENTO
-</div>
-
-<p class="mission-text">
-  Aprimorar conhecimentos em programação, expandir habilidades de desenvolvimento,
-  criar projetos cada vez mais complexos e transformar ideias em sistemas funcionais.
+  <!-- CARTÃO PRINCIPAL -->
+  <section class="page" id="card-principal">
+    <div class="character-card">
+      <div class="rank">MM-006</div>
+<div class="tag">COMPRIMENTO DE ONDA EM ESTADO CRÍTICO</div>
+<h1>MIGUEL MOTA</h1>
+<div class="line"></div>
+<p class="desc">
+  Unidade Meister MM-006. Anomalia psíquica monitorada pelo escalão superior da DWMA. Capacidade técnica expandida além dos limites seguros de contenção através do controle do estresse lógico. Especialista em capturar o Comprimento de Onda do Caos e usá-lo como combustível assíncrono na engenharia de sistemas de alta performance.
 </p>
-
-<div class="mission-objectives">
-
-  <div>☑ Aprender novas tecnologias</div>
-
-  <div>☑ Desenvolver aplicações mobile</div>
-
-  <div>☑ Criar interfaces modernas</div>
-
-  <div>☐ Lançar projetos de grande escala</div>
-
+<div class="stats">
+  <div class="stat-item"><span class="label">Ressonância</span><span class="value">Exponencial</span></div>
+  <div class="stat-item"><span class="label">Produção</span><span class="value">Assíncrona</span></div>
+  <div class="stat-item"><span class="label">Insanidade</span><span class="value">Subjugada</span></div>
 </div>
+      </div>
+      
+     <!-- <div class="clock" id="clock">00:00:00</div> -->
+    </div>
+  </section>
 
-<div class="mission-footer">
-  PRIORIDADE: ALTA • MONITORAMENTO DWMA ATIVO
-</div>
+  <!-- LINKS DE DIRETRIZ -->
+  <div class="dwma-actions">
+    
+    <a href="portfolio.html" class="dwma-btn">DESCRIPTOGRAFAR ARQUIVO DE DESENVOLVIMENTO</a>
+    
+    <section class="kishin-collector">
+  <div class="collector-card">
+    <div class="tag">CONEXÃO DE ALMA</div>
+    <div class="collector-title">COLETOR DE OVOS DE KISHIN</div>
+    
+    <!-- Removido action e method, adicionado ID -->
+    <form id="collector-form" class="collector-form">
+      <div class="form-group">
+        <input type="text" id="meister-id" required placeholder="IDENTIFICAÇÃO DO MEISTER">
+      </div>
 
+      <div class="form-group">
+        <input type="email" id="email-chan" required placeholder="CANAL DE FREQUÊNCIA (E-MAIL)">
+      </div>
+
+      <div class="form-group">
+        <textarea id="mission-msg" rows="4" required placeholder="DIRETRIZES DA MISSÃO (PROPOSTA)"></textarea>
+      </div>
+
+      <!-- O botão agora chama a função JS -->
+      <button type="button" onclick="enviarWhatsApp()" class="clock">
+        [ RECOLHER ALMA ]
+      </button>
+    </form>
   </div>
-
 </section>
 
-<section class="progress-section">
-
-  <div class="progress-title">
-    RELATÓRIO DE PROGRESSO
   </div>
 
-  <div class="progress-box">
-
-    <div class="progress-alert">
-      NÍVEL DE RESSONÂNCIA DA ALMA DETECTADO
+  <!-- SEÇÃO DE INFORMAÇÕES TÁTICAS -->
+  <section class="info">
+    <div class="box identity">
+      <div class="section-header">FICHA DE IDENTIDADE TÉCNICA</div>
+      <div class="main-title">MIGUEL MOTA</div>
+      <div class="sub-text">
+        Espécime humano sob estrito monitoramento tático da DWMA. Classificado como unidade de engenharia reversa e alta adaptabilidade arquitetural. Demonstra capacidade fora da curva para decodificar problemas lógicos e estruturar ambientes modulares complexos sob severa pressão de runtime.
+      </div>
+      <div class="tag-small">STATUS: MEISTER ATIVO // DIRETRIZ NÍVEL 6 // REGISTRO REFORÇADO</div>
     </div>
 
-    <!-- HTML -->
-    <div class="skill">
+    <div class="box soul">
+      <div class="section-header">PARÂMETROS COMPATÍVEIS</div>
+      <div class="stats-grid">
+        <div>HTML5</div>
+        <div>CSS3</div>
+        <div>JS (ES6)</div>
+        <div>PYTHON</div>
+        <div>FLUTTER</div>
+        <div>ANDROID</div>
+      </div>
+      <div class="soul-level">MEDIDOR DE FREQUÊNCIA: OSCILAÇÃO VANGUARDISTA ENCONTRADA</div>
+    </div>
 
-      <div class="skill-top">
-        <span>COMPATIBILIDADE HTML</span>
-        <span>A-RANK</span>
+    <div class="box weapon">
+      <div class="section-header">MANIFESTAÇÃO DE ARMA</div>
+      <p class="weapon-desc">
+        Forja contínua de ecossistemas mobile e interfaces agressivamente usáveis. Engenharia focada em quebrar a linearidade tradicional, forçando os limites do desempenho de hardware e da arquitetura assíncrona.
+      </p>
+      <div class="weapon-status">FORJA: ATUALIZAÇÃO SÍNCRONA CONSTANTE</div>
+    </div>
+
+    <div class="box origin">
+      <div class="section-header">PONTOS DE COORDENADAS</div>
+      <div class="origin-main">PRAIA GRANDE - SP</div>
+      <div class="origin-sub">QUADRANTE 13 • AMÉRICA LATINA • SETOR TERRA</div>
+      <div class="origin-coords">LAT: -24.014  LONG: -46.469</div>
+      <div class="origin-status">SINAL GEOGRÁFICO: ATIVO // BASE OPERACIONAL DETECTADA</div>
+    </div>
+  </section>
+
+  <!-- ANÁLISE PSÍQUICA -->
+  <section class="psy-section" id="analise-psiquica">
+    <div class="psy-title">DIAGNÓSTICO PSÍQUICO DA ALMA</div>
+    <div class="psy-grid">
+      <div class="box psy">
+        <h2>NATUREZA DA ASSINATURA</h2>
+        <p class="psy-main">ARTESÃO INTELECTUAL DA LINHA DE FRENTE</p>
+        <p class="psy-sub">Comprimento de onda altamente maleável. Absorve conceitos complexos em velocidade crítica, gerando surtos de eficiência quando exposto a desafios lógicos insolúveis.</p>
+      </div>
+      <div class="box psy">
+        <h2>VETORES DE FOCO</h2>
+        <ul>
+          <li>Engenharia de Software & Arquitetura Mobile</li>
+          <li>Design de Interfaces de Alto Impacto (UI/UX)</li>
+          <li>Sistemas Autônomos & Automação de Infraestrutura</li>
+          <li>Exploração de Novas Stacks e Paradigmas Criptografados</li>
+        </ul>
+      </div>
+      <div class="box psy">
+        <h2>PERFIL COMPORTAMENTAL</h2>
+        <p class="psy-text">Introspectivo, estrategista e profundamente analítico. Isola variáveis ambientais antes de iniciar o processo de compilação. Constrói e testa cenários de estresse mentalmente antes de transpor a primeira linha de código para a realidade.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRETRIZ DE MISSÃO -->
+  <section class="mission-section">
+    <div class="mission-title">DIRETRIZ DE MISSÃO OPERACIONAL</div>
+    <div class="mission-box">
+      <div class="mission-header">DIRETRIZ ATUAL // PROTOCOLO MM-006</div>
+      <div class="mission-status">STATUS: EXECUÇÃO CRÍTICA</div>
+      <p class="mission-text">Saturar o núcleo de conhecimento técnico, subjugar arquiteturas de dados complexas e consolidar ferramentas mobile robustas capazes de converter pura abstração criativa em sistemas implacáveis de produção.</p>
+      <div class="mission-objectives">
+        <div class="objective completed"><span>[X]</span> Rastrear e dominar novos ecossistemas computacionais</div>
+        <div class="objective completed"><span>[X]</span> Erigir aplicações mobile híbridas resilientes</div>
+        <div class="objective completed"><span>[X]</span> Romper os padrões estéticos com interfaces brutas e modernas</div>
+        <div class="objective"><span>[ ]</span> Desdobrar ecossistemas de larga escala em produção global</div>
+      </div>
+      <div class="mission-footer">NÍVEL DE AMEAÇA: ALTO • VIGILÂNCIA REFORÇADA DA CENTRAL</div>
+    </div>
+  </section>
+
+  <!-- COMPRIMENTO DE ONDA -->
+  <section class="wavelength-section">
+    <div class="wavelength-title">COMPRIMENTO DE ONDA DA ALMA</div>
+    <div class="wavelength-box">
+      <div class="wave-container">
+        <div class="wave-line"></div>
+        <div class="wave-line fast"></div>
+      </div>
+      <div class="wave-status">TAXA DE RESSONÂNCIA: 87.4% SYNC RATE (SINAL EXPONENCIAL)</div>
+    </div>
+  </section>
+
+  <!-- MURAL DE CAÇA -->
+  <section class="hunting-section" id="mural-caca">
+    <div class="hunting-title">MURAL DE PURGAÇÃO: ALMAS CAPTURADAS</div>
+    <div class="hunting-grid">
+      <div class="box hunter-card">
+        <div class="soul-tag">NÚCLEO DE OVO DE KISHIN EXTRAÍDO</div>
+        <h3>PROJETO: TITAN APP</h3>
+        <p>Artefato mobile desenvolvido em Flutter para interceptação e tratamento de logs operacionais sob condições severas de instabilidade de rede.</p>
+        <div class="weapon-used">FORJA DA ARMA: FLUTTER & DART CORE</div>
+      </div>
+      <div class="box hunter-card">
+        <div class="soul-tag">ESSÊNCIA DE BRUXA APRISIONADA</div>
+        <h3>PROJETO: APOCALYPSE UI</h3>
+        <p>Interface brutalista experimental projetada para subverter padrões convencionais de design, mantendo performance estrutural absoluta.</p>
+        <div class="weapon-used">FORJA DA ARMA: HTML5 & ADVANCED STRUCTURAL CSS</div>
+      </div>
+    </div>
+    <div class="hunting-counter">STATUS DA CAÇA: 02 / 100 ESSÊNCIAS RUMO ÀS LÂMINAS DA MORTE</div>
+  </section>
+
+  <!-- RELATÓRIOS CONFIDENCIAIS -->
+  <section class="diary-section" id="diario-campo">
+  <div class="diary-title">RELATÓRIOS INTERNOS CONFIDENCIAIS</div>
+  <div class="diary-box" id="logs-container">
+    </div>
+</section>
+
+  <!-- TERMINAL DE RÁDIO -->
+  <section class="terminal-section" id="radio-terminal">
+    <div class="terminal-grid">
+      
+      <div class="box radio-box">
+        <h2>RÁDIO DE TRANSMISSÃO TÁTICA</h2>
+        <div class="radio-controls">
+          <button class="radio-btn" id="btn-play">▶ DECODIFICAR LOG</button>
+          <button class="radio-btn" id="btn-static">⚡ INTERFERÊNCIA</button>
+        </div>
+        <div class="radio-status" id="radio-display">STATUS: FREQUÊNCIA OPERACIONAL 420KHZ // LINK CRIPTOGRAFADO</div>
       </div>
 
-      <div class="skill-bar">
-        <div class="skill-fill html"></div>
+      <div class="box dwma-terminal-box">
+        <h2>REDE DE COMANDO CENTRAL</h2>
+        <p class="shinigami-hint">INSIRA A CREDENCIAL DE AUTENTICAÇÃO DE CAMPO:</p>
+        <div class="input-container">
+          <label for="shinigami-input" class="sr-only">Código de Protocolo:</label>
+          <input type="text" id="shinigami-input" placeholder="XX-XX-XXX" maxlength="10">
+          <button id="shinigami-btn">AUTENTICAR</button>
+        </div>
+        <div class="terminal-response" id="terminal-output">AGUARDANDO CHAVE DE PROTOCOLO...</div>
       </div>
 
     </div>
+  </section>
 
-    <!-- CSS -->
-    <div class="skill">
-
-      <div class="skill-top">
-        <span>COMPATIBILIDADE CSS</span>
-        <span>A-RANK</span>
+  <!-- PROGRESSO / SKILLS -->
+  <section class="progress-section" id="progresso-skills">
+    <div class="progress-title">RELATÓRIO DE SINCRONIA TÉCNICA</div>
+    <div class="progress-box">
+      <div class="progress-alert">VARREDURA DE AFINIDADE ELEMENTAR CONCLUÍDA</div>
+      <div class="skill">
+        <div class="skill-top"><span>COMPATIBILIDADE ESTRUTURAL (HTML5)</span><span>RANK-A</span></div>
+        <div class="skill-bar"><div class="skill-fill html"></div></div>
       </div>
-
-      <div class="skill-bar">
-        <div class="skill-fill css"></div>
+      <div class="skill">
+        <div class="skill-top"><span>ESTILIZAÇÃO E MALHA GEOMÉTRICA (CSS3)</span><span>RANK-A</span></div>
+        <div class="skill-bar"><div class="skill-fill css"></div></div>
       </div>
-
-    </div>
-
-    <!-- JS -->
-    <div class="skill">
-
-      <div class="skill-top">
-        <span>COMPATIBILIDADE JAVASCRIPT</span>
-        <span>B-RANK</span>
+      <div class="skill">
+        <div class="skill-top"><span>LÓGICA ASSÍNCRONA DINÂMICA (JAVASCRIPT)</span><span>RANK-B</span></div>
+        <div class="skill-bar"><div class="skill-fill js"></div></div>
       </div>
-
-      <div class="skill-bar">
-        <div class="skill-fill js"></div>
+      <div class="skill">
+        <div class="skill-top"><span>AUTOMAÇÃO E ALGORITMOS DE EXTRAÇÃO (PYTHON)</span><span>RANK-B</span></div>
+        <div class="skill-bar"><div class="skill-fill python"></div></div>
       </div>
-
-    </div>
-
-    <!-- PYTHON -->
-    <div class="skill">
-
-      <div class="skill-top">
-        <span>COMPATIBILIDADE PYTHON</span>
-        <span>B-RANK</span>
+      <div class="skill">
+        <div class="skill-top"><span>ENGENHARIA MOBILE TRANVERSAL (FLUTTER)</span><span>RANK-C</span></div>
+        <div class="skill-bar"><div class="skill-fill flutter"></div></div>
       </div>
-
-      <div class="skill-bar">
-        <div class="skill-fill python"></div>
-      </div>
-
-    </div>
-
-    <!-- FLUTTER -->
-    <div class="skill">
-
-      <div class="skill-top">
-        <span>COMPATIBILIDADE FLUTTER</span>
-        <span>C-RANK</span>
-      </div>
-
-      <div class="skill-bar">
-        <div class="skill-fill flutter"></div>
-      </div>
-
       <div class="progress-diagnosis">
-  DIAGNÓSTICO: UNIDADE APRESENTA CRESCIMENTO ACELERADO. POTENCIAL DE EVOLUÇÃO ACIMA DA MÉDIA DETECTADO.
-</div>
-
+        DIAGNÓSTICO CENTRAL: O ARTESÃO DEMONSTRA EXPANSÃO ACELERADA DE COMPRIMENTO DE ONDA. CURVA DE APRENDIZADO VERTICAL COM GRANDE CAPACIDADE DE ABSORÇÃO DE INFRAESTRUTURAS HOSTIS.
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- CONTRATO DE RESPONSABILIDADE DWMA -->
+  <section class="mission-section" id="dwma-contract">
+    <div class="contract-box">
+      <div class="contract-stamp">[RESTRITO]</div>
+      <h2 class="contract-title">TERMO DE COMPROMISSO E CANALIZAÇÃO DA INSANIDADE</h2>
+      
+      <p class="contract-text">
+        Eu, <strong>Meister MM-006</strong>, dou fé de que o desenvolvimento de softwares, ecossistemas multiplataforma e lógica abstrata exige o manejo direto da volatilidade criativa. Sob os decretos rígidos do <strong>Comando Central</strong>, vinculo minha assinatura às seguintes cláusulas irrevogáveis:
+      </p>
 
-</section>
+      <div class="contract-clauses">
+        <div class="clause"><strong>I.</strong> Blindar a integridade estrutural das aplicações, expurgando anomalias e quebras de runtime antes que corrompam o núcleo de produção.</div>
+        <div class="clause"><strong>II.</strong> Converter surtos de hiperfoco e atividade noturna exclusivamente no desenvolvimento de arquiteturas limpas e experiências digitais brutas.</div>
+        <div class="clause"><strong>III.</strong> Submeter qualquer falha crítica, vazamento de memória ou colapso lógico à dissecação profunda e refatoração imediata na bancada de testes.</div>
+      </div>
 
-<footer class="footer">
-  © 2026 DWMA - MOTA MEISTER MM-006
-</footer>
+      <div class="contract-signature">
+        <div class="sig-line">
+          <span class="signature-handwritten">Miguel Mota</span>
+          <div class="sig-title">ASSINATURA DO ARTESÃO REQUISITADO</div>
+        </div>
+        <div class="sig-line">
+          <span class="signature-seal">VERIFICADO</span>
+          <div class="sig-title">AUTORIDADE CENTRAL DA DWMA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2026 DWMA - MOTA MEISTER MM-006
+  </footer>
 
 </body>
 </html>
